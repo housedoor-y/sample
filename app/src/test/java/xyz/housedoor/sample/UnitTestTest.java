@@ -30,12 +30,12 @@ import static org.powermock.api.mockito.PowerMockito.when;
 @PrepareForTest( UnitTestExt.class )
 public class UnitTestTest {
 
-//    @Spy
+    //    @Spy
     @InjectMocks                        // 本クラス内をMock化する
     private UnitTest mUnitTest = new UnitTest();
 
     @Mock                               // Mock化するクラス
-    UnitTestExt mockUnitTestExt;
+            UnitTestExt mockUnitTestExt;
 
 
     @Before
