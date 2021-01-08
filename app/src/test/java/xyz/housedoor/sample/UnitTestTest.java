@@ -1,5 +1,7 @@
 package xyz.housedoor.sample;
 
+// Junit4参考：https://www.slideshare.net/ichikaz3/junit4
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -7,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.reflect.Whitebox;
 
 import java.io.IOException;
 import java.lang.reflect.Constructor;
@@ -20,6 +23,7 @@ import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.powermock.api.mockito.PowerMockito.doReturn;
@@ -30,12 +34,12 @@ import static org.powermock.api.mockito.PowerMockito.when;
 @PrepareForTest( UnitTestExt.class )
 public class UnitTestTest {
 
-//    @Spy
+    //    @Spy
     @InjectMocks                        // 本クラス内をMock化する
     private UnitTest mUnitTest = new UnitTest();
 
     @Mock                               // Mock化するクラス
-    UnitTestExt mockUnitTestExt;
+            UnitTestExt mockUnitTestExt;
 
 
     @Before
@@ -165,6 +169,20 @@ public class UnitTestTest {
             exc = e;
         }
         assertNotNull( exc );   // 例外が発生していればNULL以外
+    }
+
+
+    /**
+     * Whiteboxを使用したPrivate変数(String)領域の書き換え
+     * 参考URL:https://blueskyarea.hatenablog.com/entry/2017/07/15/001828
+     */
+    @Test
+    public void testWithoutWhiteBox() {
+        UnitTest wb = new UnitTest();
+        assertEquals("This is example.", wb.getMessage());
+
+        Whitebox.setInternalState(wb, "message", "overwritten the message.");
+        assertEquals("overwritten the message.", wb.getMessage());
     }
 
 

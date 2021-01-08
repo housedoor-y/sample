@@ -7,7 +7,8 @@ import java.io.IOException;
  */
 public class UnitTestExt {
 
-	private int vTestExtPub = -1;
+	private int testExtPri = -1;
+	public  int testExtPub = -2;
 
 	public int iTestExtPubVoid() {
 		return 1;
