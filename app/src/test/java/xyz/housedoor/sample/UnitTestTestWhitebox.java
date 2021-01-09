@@ -60,14 +60,23 @@ public class UnitTestTestWhitebox {
      */
     @Test
     public void testWithoutWhiteBox3() {
+/*
         class UnitTestExtStub extends UnitTestExt {
-//            @Override
+            @Override
             public int iTestExtPub( int in ) {
                 return in + 10;
             }
         }
 
         UnitTestExt mUnitTestExtStub = new UnitTestExtStub();
+*/
+        UnitTestExt mUnitTestExtStub = new UnitTestExt() {
+            @Override
+            public int iTestExtPub( int in ) {
+                return in + 10;
+            }
+        };
+
 
         UnitTest wb = new UnitTest();
         Whitebox.setInternalState(wb, "mUnitTestExtPri", mUnitTestExtStub );

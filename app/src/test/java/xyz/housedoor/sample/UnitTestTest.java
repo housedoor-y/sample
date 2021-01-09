@@ -170,20 +170,4 @@ public class UnitTestTest {
         }
         assertNotNull( exc );   // 例外が発生していればNULL以外
     }
-
-
-    /**
-     * Whiteboxを使用したPrivate変数(String)領域の書き換え
-     * 参考URL:https://blueskyarea.hatenablog.com/entry/2017/07/15/001828
-     */
-    @Test
-    public void testWithoutWhiteBox() {
-        UnitTest wb = new UnitTest();
-        assertEquals("This is example.", wb.getMessage());
-
-        Whitebox.setInternalState(wb, "message", "overwritten the message.");
-        assertEquals("overwritten the message.", wb.getMessage());
-    }
-
-
 }

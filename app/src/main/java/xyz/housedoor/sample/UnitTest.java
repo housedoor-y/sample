@@ -26,6 +26,7 @@ public class UnitTest {
 
 	private UnitTestExt	mUnitTestExtPri = new UnitTestExt();	// 外部クラス：プライベート
 	public  UnitTestExt	mUnitTestExtPub = new UnitTestExt();	// 外部クラス：パブリック
+	private UnitTestData mUnitTestData = new UnitTestData();	// 外部クラス：プライベート(データ)
 
 
 /*
@@ -40,6 +41,19 @@ public class UnitTest {
 	private int		iSmpUtPri = 1;
 	private String	sTest;
 
+	/**
+	 * コンストラクタ
+	 */
+	UnitTest() {
+	}
+
+	/**
+	 * コンストラクタ(UT用)
+	 */
+	UnitTest( UnitTestExt pri, UnitTestExt pub ) {
+		mUnitTestExtPri = pri;
+		mUnitTestExtPub = pub;
+	}
 
 
 	public int iTestPub( int in ) {
@@ -115,7 +129,29 @@ public class UnitTest {
 	}
 
 
+	/**
+	 * ローカルメンバ(Private以外)差し替え試験用
+	 */
+	public int vLoTestReplacementPub( int in ) {
+		int ret = vLoTestReplacementPub_Sub( in );
+		return ret;
+	}
 
+	int vLoTestReplacementPub_Sub( int in ) {
+		return in + 2;
+	}
+
+	/**
+	 * 外部メンバ(Private以外)差し替え試験用
+	 */
+	public int vLoTestReplacementPubExt( int in ) {
+		int ret = mUnitTestExtPub.iTestExtPubData( mUnitTestData );
+		return in + ret + mUnitTestData.a + mUnitTestData.b + mUnitTestData.c;
+	}
+	public int vLoTestReplacementPriExt( int in ) {
+		int ret = mUnitTestExtPri.iTestExtPubData( mUnitTestData );
+		return in + ret + mUnitTestData.a + mUnitTestData.b + mUnitTestData.c;
+	}
 
 
 	/**

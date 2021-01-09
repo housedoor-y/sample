@@ -21,6 +21,13 @@ public class UnitTestExt {
 	public void vTestExtPub( int in ) {
 	}
 
+	public int iTestExtPubData( UnitTestData in ) {
+		in.a++;
+		in.b++;
+		in.c++;
+		return 1;
+	}
+
 	public void vTestExtPriException(boolean exc) throws IOException {
 		if( exc ) {
 			throw new IOException("ExtPri:IOException");
