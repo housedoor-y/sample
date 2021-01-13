@@ -47,6 +47,9 @@ public class UnitTest {
 	UnitTest() {
 	}
 
+	UnitTest( String in ) {
+	}
+
 	/**
 	 * コンストラクタ(UT用)
 	 */
@@ -184,5 +187,33 @@ public class UnitTest {
 		return mUnitTestExtPri.testExtPub;
 	}
 
+	private InnerClass mInner = new InnerClass();
+
+	private class InnerClass {
+		private int mInner;
+
+		InnerClass() {
+			mInner = 0;
+		}
+
+		InnerClass( int String ) {
+//			mInner = in;
+		}
+
+		public int innerTestInt( ) {
+			return mInner + 1;
+		}
+
+		public int innerTestInt( int in ) {
+			return mInner + in +1;
+		}
+		public void innerTestVoid() {
+			mInner += 1000;
+		}
+		public String innerTestString() {
+			return "TEST";
+		}
+
+	};
 }
 
