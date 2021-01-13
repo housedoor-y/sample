@@ -86,13 +86,13 @@ public class UnitTestInnerTest {
         UnitTestInner.ParamClass classParamInt = new UnitTestInner.ParamClass();
         classParamInt.aaa = 10;
         classParamInt.bbb = 20;
-        classParamInt.mmm = Message.obtain();
+//        classParamInt.mmm = Message.obtain(); // Message クラスがあるとダメ(final)
 
 //        Object target = constructor.newInstance( new UnitTestInner(), classParamInt);   // 引数つきの場合：newInstance( new 親クラス名(), str)
 //        Object target = constructor.newInstance( classParamInt);   // 引数つきの場合：newInstance( new 親クラス名(), str)
         Object target = constructor.newInstance( new UnitTestInner());   // 引数つきの場合：newInstance( new 親クラス名(), str)
 
-        Method method = innerClazz.getDeclaredMethod("innerTestParam", Message.class );             // getDeclaredMethod("<試験対象メソッド名>", 引数の型1, 引数の型2...);
+        Method method = innerClazz.getDeclaredMethod("innerTestParam", UnitTestInner.ParamClass.class );             // getDeclaredMethod("<試験対象メソッド名>", 引数の型1, 引数の型2...);
 
         UnitTestInner.ParamClass paramMsg = new UnitTestInner.ParamClass();
         int  ret = (int) method.invoke(target, paramMsg );

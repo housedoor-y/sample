@@ -51,7 +51,7 @@ public class UnitTestInner {
 	static class ParamClass {
 		public int		aaa;
 		public int		bbb;
-		public Message	mmm;
+//		public Message	mmm;	// Message クラスがあるとダメ(final)
 
 		ParamClass(){
 		}
