@@ -39,7 +39,7 @@ public class UnitTestTest {
     private UnitTest mUnitTest = new UnitTest();
 
     @Mock                               // Mock化するクラス
-            UnitTestExt mockUnitTestExt;
+    UnitTestExt mockUnitTestExt;
 
 
     @Before

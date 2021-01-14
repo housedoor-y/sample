@@ -67,36 +67,4 @@ public class UnitTestInnerTest {
         int  ret = (int) method.invoke(target, paramInt );
     }
 
-    /**
-     *
-     * @throws Exception
-     * @note 親クラス       ：UnitTest
-     * @note インアークラス ：Inner　　　　試験対象
-     */
-    @Test
-    public void test2() throws Exception {
-        ClassLoader loader = ClassLoader.getSystemClassLoader();
-        Class innerClazz = loader.loadClass("xyz.housedoor.sample.UnitTestInner$InnerClass");  // パッケージ名.親クラス名$インナークラス名
-
-        // 第１引数に外側クラスのClassオブジェクトを指定する
-        Class[] constructorParameterTypes = new Class[]{ UnitTestInner.class };           // ( 親クラス名.class, 親クラス：引数型名)
-        Constructor constructor = innerClazz.getDeclaredConstructor( constructorParameterTypes );
-        constructor.setAccessible(true);
-
-        UnitTestInner.ParamClass classParamInt = new UnitTestInner.ParamClass();
-        classParamInt.aaa = 10;
-        classParamInt.bbb = 20;
-//        classParamInt.mmm = Message.obtain(); // Message クラスがあるとダメ(final)
-
-//        Object target = constructor.newInstance( new UnitTestInner(), classParamInt);   // 引数つきの場合：newInstance( new 親クラス名(), str)
-//        Object target = constructor.newInstance( classParamInt);   // 引数つきの場合：newInstance( new 親クラス名(), str)
-        Object target = constructor.newInstance( new UnitTestInner());   // 引数つきの場合：newInstance( new 親クラス名(), str)
-
-        Method method = innerClazz.getDeclaredMethod("innerTestParam", UnitTestInner.ParamClass.class );             // getDeclaredMethod("<試験対象メソッド名>", 引数の型1, 引数の型2...);
-
-        UnitTestInner.ParamClass paramMsg = new UnitTestInner.ParamClass();
-        int  ret = (int) method.invoke(target, paramMsg );
-   }
-
-
 }
